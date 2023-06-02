@@ -14,14 +14,17 @@ function createCanvas(size) {
   return function () {
     console.log(canvas.innerHTML);
     canvas.innerHTML = ""
+    let root = Math.sqrt(size/100);
+    let columns = (size/10) / root;
     for (let i = 0; i < size; i++) {
       //create pixel and append to canvas
       const pixel = document.createElement("div");
       pixel.className = "pixel";
       canvas.appendChild(pixel);
-      pixel.style.width = "87px";
+      pixel.style.width = "18px";
       pixel.style.height = "18px";
     }
+    canvas.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
     enableDrawing();
   };
 }
@@ -33,6 +36,6 @@ function colorIn() {
 
 smallCanvas.addEventListener("click", createCanvas(100));
 
-mediumCanvas.addEventListener("click", createCanvas(200));
+mediumCanvas.addEventListener("click", createCanvas(400));
 
-largeCanvas.addEventListener("click", createCanvas(300));
+largeCanvas.addEventListener("click", createCanvas(900));
